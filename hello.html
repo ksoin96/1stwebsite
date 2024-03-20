@@ -1,15 +1,27 @@
+
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hello World</title>
+    <title>Embedded Python Tutor</title>
+    <style>
+        /* Style to hide scrollbar in iframe */
+        iframe {
+            overflow: hidden;
+        }
+    </style>
 </head>
 <body>
 
-<h1>Hello, World!</h1>
+<!-- Disable right-click -->
+<script>
+    document.addEventListener('contextmenu', function (e) {
+        e.preventDefault();
+    }, false);
+</script>
 
-<p>This is a basic HTML page.</p>
+<!-- Embed Python Tutor with restricted attributes -->
+<iframe width="800" height="500" frameborder="0" src="https://pythontutor.com/iframe-embed.html#code=print%28%22Hello%20World%22%29&codeDivHeight=400&codeDivWidth=350&cumulative=false&curInstr=1&heapPrimitives=nevernest&origin=opt-frontend.js&py=311&rawInputLstJSON=%5B%5D&textReferences=false" sandbox="allow-scripts" allowfullscreen> </iframe>
 
 </body>
 </html>
+
