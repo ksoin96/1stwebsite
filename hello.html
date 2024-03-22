@@ -3,10 +3,66 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Embedded Repl</title>
+    <title>Even or Odd Checker</title>
+    <style>
+        #programBlock {
+            float: left;
+            width: 50%;
+        }
+        #outputBlock {
+            float: left;
+            width: 50%;
+            height: 200px;
+            overflow-y: scroll;
+            border: 1px solid #ccc;
+            padding: 10px;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
 <body>
-    <h1>Embedded Repl Example</h1>
-    <!-- Embed the Repl using an iframe -->
-    <iframe src="https://replit.com/@ksoin96/Hello-World?embed=true" width="100%" height="500px" frameborder="0"></iframe>
+    <h1>Even or Odd Checker</h1>
+
+    <!-- Program Block -->
+    <div id="programBlock">
+        <h2>Python Program</h2>
+        <button onclick="runProgram()">Run</button>
+        <button onclick="clearOutput()">Clear</button>
+        <div id="output"></div>
+    </div>
+
+    <!-- Output Block -->
+    <div id="outputBlock">
+        <h2>Output</h2>
+        <div id="terminal"></div>
+        <input type="text" id="inputField">
+        <button onclick="submitInput()">Submit</button>
+    </div>
+
+    <script>
+        function runProgram() {
+            var outputDiv = document.getElementById("output");
+            outputDiv.innerHTML = "<span style='color:blue;'>What is your number? </span>";
+        }
+
+        function clearOutput() {
+            document.getElementById("output").innerHTML = "";
+        }
+
+        function submitInput() {
+            var inputField = document.getElementById("inputField");
+            var number = inputField.value.trim();
+            if (number !== "") {
+                fetch("https://nm5116abi8.execute-api.us-east-2.amazonaws.com/ksoin?number=" + encodeURIComponent(number))
+                .then(response => response.json())
+                .then(data => {
+                    var outputDiv = document.getElementById("output");
+                    outputDiv.innerHTML += "<br>" + data.result;
+                    inputField.value = "";
+                })
+                .catch(error => console.error("Error:", error));
+            }
+        }
+    </script>
 </body>
+</html>
